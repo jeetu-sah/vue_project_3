@@ -4,15 +4,7 @@ import { ref } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 import FamilyDetails from './components/studentProfile/familyDetails/FamilyDetails.vue'
-import { validationField, validationFamilyField, user, checkValidate } from './app'
-import useValidation from './utils/composable/usevalidation'
-const { validationFormData, setFormDataValue } = useValidation()
-
-
-const userFamily = ref({
-  father: '',
-  mother: ''
-})
+import {user, checkValidate, validation, familyObj } from './app'
 
 </script>
 
@@ -21,10 +13,18 @@ const userFamily = ref({
     <div class="row">
       <div class="col">
         <h4>Student Profile Form</h4>
+        validate form object {{validation.form}}
       </div>
     </div>
-    {{user}}
+    <div class="row">
+      <div class="col">
+        <h4>Family Form</h4>
+        validate form Family {{familyObj}}
+      </div>
+    </div>
+  
     <div class="row q-pa-md">
+      
       <div class="col">
         <q-form class="q-gutter-md">
             <div class="row q-gutter-md items-start">

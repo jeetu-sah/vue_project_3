@@ -11,21 +11,21 @@ const props = defineProps({
 const fatherName = computed({
   get() {
     console.log('props?.user?.father', )
-    return props?.user?.family?.father ?? ''
+    return props?.user?.family?.father ?? null
   },
   // setter
   set(newValue) {
-    props.user.family.father = newValue;
+    props.user.family.father = newValue ?? null;
   }
 })
 
 const motherName = computed({
   get() {
-    return props?.user?.family?.mother ?? ''
+    return props?.user?.family?.mother ?? null
   },
   // setter
   set(newValue) {
-    props.user.family.mother = newValue;
+    props.user.family.mother = newValue ?? null;
   }
 })
 

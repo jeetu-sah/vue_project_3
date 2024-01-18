@@ -1,13 +1,12 @@
 
 import { useQuasar } from 'quasar'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 import useValidation from './utils/composable/usevalidation'
+import { validationField } from './core/validation/studentProfile/studentProfile'
 
-export const validationField  = ['name', 'age'];
-export const validationFamilyField  = ['father', 'mother'];
-const { validationFormData, setFormDataValue } = useValidation()
+export const { validation } = useValidation()
 
 const $q = useQuasar()
 
@@ -21,14 +20,17 @@ export const user = ref({
     mother : 'mother name test',
   }
 })
-const userFamily = ref({
-    father: '',
-    mother: ''
+
+export const familyObj = computed(() => {
+  return user.value.family
 })
 
-export const checkValidate = () => {
+
+export const checkValidate = async () => {
   console.log('checkValidate', user.value)
-  // setFormDataValue(user.value, validationField)
+  validation.setFormDataValue(user.value)
+  validation.setFormDataValue(familyObj.value)
+ 
   // setFormDataValue(user.value.fam, validationFamilyField)
   // if(typeof user.value.fam == 'object') {
   //   console.log('yes')
