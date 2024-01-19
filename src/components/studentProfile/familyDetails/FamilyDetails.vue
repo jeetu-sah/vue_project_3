@@ -3,14 +3,17 @@ import { ref, computed, defineProps} from 'vue'
 
 const props = defineProps({
     user: {
-        type: Object,
-        require: true
+      type: Object,
+      require: true
+    }, 
+    errorMessages: {
+      type: Function,
+      require: true
     }
 })
 
 const fatherName = computed({
   get() {
-    console.log('props?.user?.father', )
     return props?.user?.family?.father ?? null
   },
   // setter
@@ -42,6 +45,7 @@ const motherName = computed({
                     v-model="fatherName"
                     label="Father Name *"
                     hint="Father name"
+                    :error="errorMessages('father')"
                     lazy-rules
                 />
                 </div>
@@ -51,6 +55,7 @@ const motherName = computed({
                         v-model="motherName"
                         label="Mother name *"
                         hint="Mother Name"
+                        :error="errorMessages('mother')"
                         lazy-rules
                     />
                 </div>
